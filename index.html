@@ -1,45 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,200;16..144,400;16..144,600&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
     <title>Interactive Card Form</title>
 </head>
+
 <body>
-    <main>
-        <div class="main-div">
-            <div>
-                <img src="imágenes/bg-main-desktop.png" alt=""  class="image">
-                <img src="" alt="">
+    <main class="row">
+        <aside class="col-sm-4 col-12">    
+            <div class="card text-white"  id="tarjeta-front">
+                <img src="imágenes/bg-card-front.png" alt="" class="card-img">
+                <div class="card-img-overlay">
+                    <svg id="logo-tarjeta" width="84" height="47" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="23.478" cy="23.5" rx="23.478" ry="23.5" fill="#fff"/><path d="M83.5 23.5c0 5.565-4.507 10.075-10.065 10.075-5.559 0-10.065-4.51-10.065-10.075 0-5.565 4.506-10.075 10.065-10.075 5.558 0 10.065 4.51 10.065 10.075Z" stroke="#fff"/></svg>
+                    <p id="card-number-img" class="card-text">0000 0000 0000 0000</p>
+                    <p id="card-holder-name-img" class="card-text">JANE APPLESEED</p>
+                    <p id="card-exp-date-img" class="card-text"><span id="ExpDateMonth">00</span>/<span id="ExpDateYear">00</span></p>
+                </div>
             </div>
-            <div>
-                <form action="" class="form">
-                    <div class="input">
-                        <input type="text">
-                        <label for=""></label>
-                    </div>
-                    <div class="input">
-                        <input type="text">
-                        <label for=""></label>
-                    </div>
-                    <div class="input">
-                        <input type="text">
-                        <label for=""></label>
-
-                        <input type="text">
-                        <label for=""></label>
-                        
-                        <input type="text">
-                        <label for=""></label>
-                    </div>
-                </form>
+            
+            <div class="card text-white" id="tarjeta-back">
+                <img src="imágenes/bg-card-back.png" alt="" class="card-img">
+                <div class="card-img-overlay">
+                    <p class="card-text" id="card-cvc-img">000</p>
+                </div>
             </div>
-           
+        </aside>
 
-        </div>
-        
+        <section class="col-sm-6 mt-sm-0 mt-4">
+            <form action="" class="row mx-auto needs-validation" id="formulario" novalidate>
+                <div class="col-sm-8  mb-4">
+                    <label for="" class="mb-2">CARDHOLDER NAME</label>
+                    <input id="cardHolderName" oninput="mostrarNombreTarjeta()" type="text" class="form-control" placeholder="e.g. Jane Appleseed" required>
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                    <div class="valid-feedback">
+                        The provided information is valid
+                    </div>
+                </div>
+                <div class="col-sm-8 ">
+                    <label for="" class="mb-2">CARD NUMBER</label>
+                    <input id="CardNumber" type="text" class="form-control" oninput="mostrarNumeroTarjeta()" maxlength="19" placeholder="e.g. 1234 5678 9123 0000" required>
+                    <div class="invalid-feedback">
+                        Invalid card number
+                    </div>
+                    <div class="valid-feedback">
+                        It appears fine
+                    </div>
+                </div>
+                <div class="col-sm-8 row my-4">
+
+                    <div class="form-group col-sm-7 col-7 row" id="expiration-date">
+                        <label class="mb-2 text-center">Exp. Date</label>
+                        <div class="col-sm-6 col-6">
+                            <select class="form-control" oninput="mostrarMesVencimientoTarjeta()" required>
+                                <option value="" disabled selected hidden>MM</option>
+                                <option value="01">01</option>
+                                <option value="02">02 </option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Month is required
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good
+                            </div>
+                        </div>
+                            <div class="col-sm-6 col-6">
+                                <select class="form-control" oninput="mostrarAñoVencimientoTarjeta()"required>
+                                    <option value="" disabled selected hidden>YY</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Year is required
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-sm-5 col-5 text-center">
+                        <label class="mb-2" for="">cvc</label>
+                        <input id="cvc" type="text" class="form-control" oninput="mostrarCvcTarjeta()" minlength="3" maxlength="3" placeholder="e.g. 123">
+                        <div class="invalid-feedback">
+                            Invalid cvc number
+                        </div>
+                        <div class="valid-feedback">
+                            That seems good
+                        </div>
+                    </div>
+                </div>
+                <div class="pe-sm-4">
+                    <button type="submit" class="btn btn-primary col-sm-8 col-12" id="btnFormulario">Confirm</button>
+                </div>
+            </form>
+                <div class="text-center  d-none" id="ultima-respuesta">
+                    <img class="mb-4" src="imágenes/icon-complete.svg" alt="">
+                    <p class="fs-2 mb-2">THANK YOU!</p>
+                    <p class="text-muted mb-5 fs-5">We've added your card details</p>
+                    <button type="button" id="btnIconComplete" class="btn btn-primary w-100 ">Continue</button>
+                </div>
+        </section>
     </main>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
