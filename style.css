@@ -23,6 +23,10 @@ div .invalid-feedback{
     font-size: 13px;
 }
 
+div .valid-feedback{
+    font-size: 13px;
+}
+
 aside{
     background-image: url(imágenes/bg-main-mobile.png);
     background-size: contain;
