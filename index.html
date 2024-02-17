@@ -39,7 +39,7 @@
             <form action="" class="row mx-auto needs-validation" id="formulario" novalidate>
                 <div class="col-sm-8  mb-4">
                     <label for="" class="mb-2">CARDHOLDER NAME</label>
-                    <input id="cardHolderName" oninput="mostrarNombreTarjeta()" type="text" class="form-control" placeholder="e.g. Jane Appleseed" required>
+                    <input id="cardHolderName" oninput="mostrarNombreTarjeta()" type="text" class="form-control" placeholder="e.g. Jane Appleseed" onkeypress="return negarNumeros(event);" required>
                     <div class="invalid-feedback">
                         This field is required
                     </div>

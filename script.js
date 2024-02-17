@@ -79,10 +79,24 @@ function aprobarFormulario(e) {
 };
 
 function mostrarNombreTarjeta() {
-
     cardHolderNameImg.textContent = cardHolderName.value;
 };
 
+function negarNumeros(e) {
+    if (e.keyCode) {
+        code = e.keyCode
+    }
+    else if (e.which) {
+        code = e.which
+    }
+    let character = String.fromCharCode(code);
+    let allow  = /^[\ba-zA-Z\s-]$/;
+
+    if (allow.test(character)) {
+        return true
+    }     
+    return false; 
+}
 
 function mostrarNumeroTarjeta() {
     cardNumber.value = cardNumber.value.replace(/\D/g, "");
@@ -99,6 +113,8 @@ function mostrarAñoVencimientoTarjeta() {
 };
 
 function mostrarCvcTarjeta() {
+    cvc.value = cvc.value.replace(/\D/g, "");
+    cvc.value = cvc.value.replace(/(\d{4})/g, "$1 ");
     cardCvcImg.textContent = cvc.value;
 };
 
@@ -112,9 +128,26 @@ formulario.addEventListener('submit', (e) => {
 
     validarCvc(cvc, e);
 
-    // Tengo que usar un callback y si no me anda probar una funcion asincrona
     aprobarFormulario(e);
 });
+
+cardHolderName.addEventListener('input', () =>{
+    if (cardHolderName.value === '') {
+        cardHolderNameImg.textContent = 'JANE APPLESEED';
+    }
+})
+
+cardNumber.addEventListener('input', () =>{
+    if (cardNumber.value === '') {
+        cardNumberImg.textContent = '0000 0000 0000 0000';
+    }
+})
+
+cvc.addEventListener('input', () =>{
+    if (cvc.value === '') {
+        cardCvcImg.textContent = '000';
+    }
+})
 
 ultimaRespuesta.addEventListener('click', () =>{
     window.location.reload();

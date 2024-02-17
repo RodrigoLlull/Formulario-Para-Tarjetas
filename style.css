@@ -81,7 +81,7 @@ aside{
 @media (min-width: 576px){
 
     main{
-        height: 1000px;
+        height: 100vh;
     }
 
     #formulario{
@@ -94,7 +94,7 @@ aside{
         background-image: url(imágenes/bg-main-desktop.png);
         background-repeat: no-repeat;
         background-size: cover;
-        height: 1000px;
+        height: 100%;
     }
     
     #tarjeta-front{ 
